@@ -1,0 +1,4 @@
+interface:
+  display_name: "授权 APK 去广告"
+  short_description: "授权 APK 去广告维护、签名与 ADB 功能回归验证"
+  default_prompt: "Use $authorized-apk-ad-cleanup to inspect and safely maintain my authorized Android APK ad cleanup workflow."
