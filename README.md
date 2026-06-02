@@ -1,12 +1,47 @@
 # Authorized APK Ad Cleanup
 
-**Authorized APK Ad Cleanup** is a Codex/Claude skill for carefully maintaining Android APKs when you own the app or have explicit permission to modify it.
+**Authorized APK Ad Cleanup** is a compliance-first Claude and Codex skill for Android APK maintenance. It helps agents inspect authorized APK workspaces, identify ad and analytics surfaces, rebuild and sign modified APKs, and verify real user flows with ADB.
 
-It is designed for a practical, real-world workflow: inspect a decompiled APK, identify ad and analytics surfaces, apply minimal ad-cleanup patches, rebuild and sign the APK, then verify the result on a real device with ADB. The final step is especially important: the skill does not stop at "the app launches." It helps discover the app's user-facing functions and checks that those flows still work.
+Use it when you own the app, maintain an internal build, support an enterprise/customer APK, or have explicit permission from the rights holder. The workflow is built for practical, evidence-based cleanup: inspect, classify, patch minimally, rebuild, sign, install, launch, capture logs/screenshots/UI XML, and regression-test the features users actually rely on.
 
 > This skill is for authorized maintenance only. It is not for bypassing VIP, paid content, subscriptions, login, DRM, licensing, payment flows, or signature checks.
 
-## What This Skill Helps You Do
+## At A Glance
+
+- Platform: Android APK maintenance
+- Agents: Claude Code, Codex, and compatible skill-based agent workflows
+- Tooling: apktool, uber-apk-signer, ADB, logcat, uiautomator
+- Focus: authorized ad cleanup, analytics/privacy inventory, rebuild/signing, and ADB regression testing
+- Safety model: simple authorization gate plus explicit protected-access boundaries
+
+## Quick Install
+
+Install for both Claude and Codex:
+
+### Windows PowerShell
+
+```powershell
+git clone https://github.com/qiusheng182/authorized-apk-ad-cleanup.git
+cd authorized-apk-ad-cleanup
+.\install.ps1 -Target both
+```
+
+### macOS/Linux
+
+```bash
+git clone https://github.com/qiusheng182/authorized-apk-ad-cleanup.git
+cd authorized-apk-ad-cleanup
+chmod +x install.sh
+./install.sh both
+```
+
+Then start a new Claude or Codex session and invoke:
+
+```text
+Use $authorized-apk-ad-cleanup to inspect my authorized APK cleanup workflow.
+```
+
+## What It Helps You Do
 
 - Ask a simple authorization question before any APK modification.
 - Summarize the current APK workspace and choose the next workflow phase automatically.
@@ -16,6 +51,14 @@ It is designed for a practical, real-world workflow: inspect a decompiled APK, i
 - Rebuild and sign modified APKs with local tools such as apktool and uber-apk-signer.
 - Use ADB to install, launch, capture screenshots, dump UI XML, collect logcat, and verify behavior.
 - Identify user-facing app functions and run ADB-based regression checks so normal features remain usable.
+
+## Who It Is For
+
+- Android maintainers who need a repeatable checklist for authorized APK cleanup.
+- QA engineers who want ADB evidence after modifying an APK.
+- Security and privacy reviewers who need to inventory ad and analytics surfaces.
+- Claude and Codex users who want a safer agent workflow for APK rebuild/sign/verify loops.
+- Teams maintaining internal, customer-owned, or explicitly authorized APK distributions.
 
 ## Why It Is Useful
 
@@ -34,6 +77,14 @@ This skill gives Claude or Codex a staged operating procedure:
 9. Report what changed, what passed, and what remains risky.
 
 The result is a cleaner maintenance loop with fewer broken builds, fewer forgotten verification steps, and a clearer record of what was actually tested.
+
+## Responsible Use
+
+This repository does not include APKs, private keys, vendor SDK dumps, paid-feature bypasses, DRM bypasses, account bypasses, or third-party app patches.
+
+The skill is written to stop before modification unless the user confirms that the APK is their own or explicitly authorized for maintenance. It also tells the agent to leave protected-access logic untouched, including membership, payment, login, license, DRM, and signature-check logic.
+
+In short: it is a maintenance workflow, not a cracking workflow.
 
 ## Install For Codex
 
@@ -148,6 +199,10 @@ This project intentionally draws a bright line:
 - Out of scope: bypassing paid features, VIP membership, subscriptions, login, DRM, licensing, payment flows, signature checks, or other access controls.
 
 That boundary keeps the workflow useful for legitimate maintenance while protecting users, developers, and downstream agents from turning a cleanup task into unauthorized circumvention.
+
+## Search Keywords
+
+Claude skill, Codex skill, Android APK maintenance, authorized APK cleanup, apktool workflow, ADB regression testing, uiautomator verification, APK rebuild signing, mobile QA automation, Android privacy review.
 
 ## License
 
